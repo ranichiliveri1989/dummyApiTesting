@@ -1,6 +1,7 @@
 package com.tests.simpleCRUDwithTekarch;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -13,6 +14,7 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.http.Header;
 import io.restassured.matcher.ResponseAwareMatcher;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 public class CreateTestData {
@@ -62,18 +64,24 @@ String token;
 		Response res= RestAssured
 		               .given()
 			           .contentType(ContentType.JSON)
-			           .body("{\"accountno\":\"DA-eclip23\",\"departmentno\":\"6\",\"salary\":\"1056\",\"pincode\":\"348935\"}")
+			           .body("{\"accountno\":\"DA-eclip59\",\"departmentno\":\"6\",\"salary\":\"1056\",\"pincode\":\"348935\"}")
 			           .header(tokenHeader)
 		               .when()
 		               .post(Endpoints.ADD_DATA);
 		res.then().statusCode(201);
-		res.prettyPrint();
+		//res.prettyPrint();
 		//res.then().body("status",is("success"));
 		
 		// get the total num of records
 		// get all account no for the userid= JBFBUgrJ3VQaudaTXM0r
 		// validate size=4 for the previous validation
-			
+		String data2=GetDataTest.getUserData();
+		JsonPath data=new JsonPath(data2);
+		
+		
+		ArrayList<String> listOfrecords=data.get("findAll{it->it.accountno=='DA-eclip59'}");
+		System.out.println("all records =="+listOfrecords);
+		
 		
 	}
 

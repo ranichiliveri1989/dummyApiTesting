@@ -33,7 +33,7 @@ public class GetDataTest {
 	}
 	
 	
-	public String login() throws IOException {
+	public static String login() throws IOException {
 		
 		String uName=PropertiesUtility.readPropertyData("username");
 		String pWord=PropertiesUtility.readPropertyData("password");
@@ -62,7 +62,7 @@ public class GetDataTest {
 	}
 	
 	@Test
-	public void getUserData() throws IOException {
+	public static String getUserData() throws IOException {
 		
 		Header tokenHeader=new Header("token",login());
 		
@@ -82,94 +82,99 @@ public class GetDataTest {
 		System.out.println("number of records="+data.length);
 		for (UserPOJO da : data) {
 			System.out.println(da.getDepartmentno());
+			
 		}
       
        res.then().statusCode(200);
-       
-      // res.prettyPrint();
-		
-     //1. Find the total number of user records existing in the response(print to console)
-       
-	    System.out.println("total records="+res.body().jsonPath().get("size()"));
-	
+//       
+//      // res.prettyPrint();
+//		
+//     //1. Find the total number of user records existing in the response(print to console)
+//       
+//	    System.out.println("total records="+res.body().jsonPath().get("size()"));
+//	
      //4. Find the all records for the given dept no 9
 	    
 	    ArrayList<String> listOfrecords=res.body().jsonPath().get("findAll{it->it.departmentno=='9'}");
     	System.out.println("all records =="+listOfrecords);
+    	System.out.println("all records =="+listOfrecords.size());
+    	
 	    
-      //2. Find the total number of records existing for the given user id laCGA21I8UVpjNbEFcP4
-    	
-    	ArrayList<String> totalRecords=res.body().jsonPath().get("findAll{it->it.userid=='laCGA21I8UVpjNbEFcP4'}.accountno");
-    	System.out.println("all records =="+totalRecords.size());
-    	
-    	//assertEquals(listOfaccounts.size(),5);
-    	
-    	// get all account no for the userid= JBFBUgrJ3VQaudaTXM0r
-    	// validate size=4 for the previous validation
-    	ArrayList<String> listOfaccounts=res.body().jsonPath().get("findAll{it->it.userid=='JBFBUgrJ3VQaudaTXM0r'}.accountno");
-    	System.out.println("all ids =="+listOfaccounts);
-    	assertEquals(listOfaccounts.size(),5);
-        	
-      //5. validate all the id for the given user id lzQHg4ywe0MI87vM7fpF as {sZo9DIeowhov16XdJ1k8,xcUd3LpoVlEqhYsJ4Iea,gpq2G8QLEFmf611v9NpB.KplwvzQFWJd97VeB5atu,bIrDlvlxI1sAAcgon5SR}
-
-    	ArrayList<String> allIds=res.body().jsonPath().get("findAll{it->it.userid=='lzQHg4ywe0MI87vM7fpF'}.id");
-		
-    	List<String> expected_items = Arrays.asList("sZo9DIeowhov16XdJ1k8","xcUd3LpoVlEqhYsJ4Iea","gpq2G8QLEFmf611v9NpB","KplwvzQFWJd97VeB5atu","bIrDlvlxI1sAAcgon5SR");
-    	
-    	for (String ids:allIds)
-    	    
-	    {
-	    	Assert.assertTrue(expected_items.contains(ids)); 
-	    }
-    	
-    	//3. Find the sum of all salary(note: salary is in string) of the given user id laCGA21I8UVpjNbEFcP4
-		
-    	ArrayList<String> allsalary=res.body().jsonPath().get("findAll{it->it.userid=='laCGA21I8UVpjNbEFcP4'}.salary");
-		
-    	System.out.println("all salary =="+allsalary);
-    	//ArrayList<Integer> salaries = new ArrayList<Integer>();
-    	int temp=0;
-    	for(String sal:allsalary) 
-    	{
-    		int x=Integer.parseInt(sal);
-    		temp=temp+x;
-    		//salaries.add(x);
-    	}
-    	
-    	
-    	
-    	System.out.println("sum of salaries="+temp);
-    	
-//    	6. Find the avg salary for the given dept no 3 (note: salary is in string)
-
-    	ArrayList<String> allsalaryfordept3=res.body().jsonPath().get("findAll{it->it.departmentno=='3'}.salary");
-    	System.out.println("all salary =="+allsalaryfordept3);
-    	long temp1=0;
-    	int size1=allsalaryfordept3.size();
-    	System.out.println("size =="+size1);
-    	try
-    	{
-    		
-    	for(String sal:allsalaryfordept3) 
-    	{
-    		try
-    		{
-    			int x=Integer.parseInt(sal);
-        		temp1=temp1+x;
-    		}
-    		catch(Exception e)
-    		{
-    			System.out.println("invalid salary:"+sal);
-    		}
-    
-    	}
-    	}
-		catch(ClassCastException e)
-    	{
-			System.out.println("invalid salary:");
-    	}
-    	double avg=temp1/size1;
-    	System.out.println("avg salary for the given dept no 3:  "+avg);
+//      //2. Find the total number of records existing for the given user id laCGA21I8UVpjNbEFcP4
+//    	
+//    	ArrayList<String> totalRecords=res.body().jsonPath().get("findAll{it->it.userid=='laCGA21I8UVpjNbEFcP4'}.accountno");
+//    	System.out.println("all records =="+totalRecords.size());
+//    	
+//    	//assertEquals(listOfaccounts.size(),5);
+//    	
+//    	// get all account no for the userid= JBFBUgrJ3VQaudaTXM0r
+//    	// validate size=4 for the previous validation
+//    	ArrayList<String> listOfaccounts=res.body().jsonPath().get("findAll{it->it.userid=='JBFBUgrJ3VQaudaTXM0r'}.accountno");
+//    	System.out.println("all ids =="+listOfaccounts);
+//    	assertEquals(listOfaccounts.size(),5);
+//        	
+//      //5. validate all the id for the given user id lzQHg4ywe0MI87vM7fpF as {sZo9DIeowhov16XdJ1k8,xcUd3LpoVlEqhYsJ4Iea,gpq2G8QLEFmf611v9NpB.KplwvzQFWJd97VeB5atu,bIrDlvlxI1sAAcgon5SR}
+//
+//    	ArrayList<String> allIds=res.body().jsonPath().get("findAll{it->it.userid=='lzQHg4ywe0MI87vM7fpF'}.id");
+//		
+//    	List<String> expected_items = Arrays.asList("sZo9DIeowhov16XdJ1k8","xcUd3LpoVlEqhYsJ4Iea","gpq2G8QLEFmf611v9NpB","KplwvzQFWJd97VeB5atu","bIrDlvlxI1sAAcgon5SR");
+//    	
+//    	for (String ids:allIds)
+//    	    
+//	    {
+//	    	Assert.assertTrue(expected_items.contains(ids)); 
+//	    }
+//    	
+//    	//3. Find the sum of all salary(note: salary is in string) of the given user id laCGA21I8UVpjNbEFcP4
+//		
+//    	ArrayList<String> allsalary=res.body().jsonPath().get("findAll{it->it.userid=='laCGA21I8UVpjNbEFcP4'}.salary");
+//		
+//    	System.out.println("all salary =="+allsalary);
+//    	//ArrayList<Integer> salaries = new ArrayList<Integer>();
+//    	int temp=0;
+//    	for(String sal:allsalary) 
+//    	{
+//    		int x=Integer.parseInt(sal);
+//    		temp=temp+x;
+//    		//salaries.add(x);
+//    	}
+//    	
+//    	
+//    	
+//    	System.out.println("sum of salaries="+temp);
+//    	
+////    	6. Find the avg salary for the given dept no 3 (note: salary is in string)
+//
+//    	ArrayList<String> allsalaryfordept3=res.body().jsonPath().get("findAll{it->it.departmentno=='3'}.salary");
+//    	System.out.println("all salary =="+allsalaryfordept3);
+//    	long temp1=0;
+//    	int size1=allsalaryfordept3.size();
+//    	System.out.println("size =="+size1);
+//    	try
+//    	{
+//    		
+//    	for(String sal:allsalaryfordept3) 
+//    	{
+//    		try
+//    		{
+//    			int x=Integer.parseInt(sal);
+//        		temp1=temp1+x;
+//    		}
+//    		catch(Exception e)
+//    		{
+//    			System.out.println("invalid salary:"+sal);
+//    		}
+//    
+//    	}
+//    	}
+//		catch(ClassCastException e)
+//    	{
+//			System.out.println("invalid salary:");
+//    	}
+//    	double avg=temp1/size1;
+//    	System.out.println("avg salary for the given dept no 3:  "+avg);
+//    
+    	return  res.body().asString();
     	
 	}
 

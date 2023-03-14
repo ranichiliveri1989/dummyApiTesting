@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-03-11T18:25:35 PST" name="Default suite" finished-at="2023-03-11T18:25:51 PST" duration-ms="16102">
+  <suite started-at="2023-03-13T17:11:28 PDT" name="Default suite" finished-at="2023-03-13T17:11:34 PDT" duration-ms="5745">
     <groups>
     </groups>
-    <test started-at="2023-03-11T18:25:35 PST" name="Default test" finished-at="2023-03-11T18:25:51 PST" duration-ms="16102">
-      <class name="com.tests.simpleCRUDwithTekarch.GetDataTest">
-        <test-method is-config="true" signature="init()[pri:0, instance:com.tests.simpleCRUDwithTekarch.GetDataTest@6356695f]" started-at="2023-03-11T18:25:35 PST" name="init" finished-at="2023-03-11T18:25:36 PST" duration-ms="678" status="PASS">
+    <test started-at="2023-03-13T17:11:28 PDT" name="Default test" finished-at="2023-03-13T17:11:34 PDT" duration-ms="5745">
+      <class name="com.tests.simpleCRUDwithTekarch.UpdateTestData">
+        <test-method is-config="true" signature="init()[pri:0, instance:com.tests.simpleCRUDwithTekarch.UpdateTestData@6356695f]" started-at="2023-03-13T17:11:28 PDT" name="init" finished-at="2023-03-13T17:11:29 PDT" duration-ms="586" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- init -->
-        <test-method signature="getUserData()[pri:0, instance:com.tests.simpleCRUDwithTekarch.GetDataTest@6356695f]" started-at="2023-03-11T18:25:36 PST" name="getUserData" finished-at="2023-03-11T18:25:51 PST" duration-ms="15375" status="PASS">
+        <test-method signature="updateUserData()[pri:0, instance:com.tests.simpleCRUDwithTekarch.UpdateTestData@6356695f]" started-at="2023-03-13T17:11:29 PDT" name="updateUserData" finished-at="2023-03-13T17:11:34 PDT" duration-ms="5120" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- getUserData -->
-      </class> <!-- com.tests.simpleCRUDwithTekarch.GetDataTest -->
+        </test-method> <!-- updateUserData -->
+      </class> <!-- com.tests.simpleCRUDwithTekarch.UpdateTestData -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
